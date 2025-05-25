@@ -30,6 +30,10 @@ resource "null_resource" "tails_iso" {
           -O ${local.iso_file_fullpath}
       EOT
 
+    }
+
+}
+
 #
 # Using the abspath and pathexpand functions to support ~ with pathexpand
 # abspath to get the complete (absolute path)
