@@ -21,3 +21,24 @@ data "http" "tails_rss" {
 
 }
 
+#
+# There isn't a good way to parse ( as far as I know ) a RSS feed in
+# terrafrom. Using a shell script for now
+#
+
+data "external" "get_tails_latest_version" {
+
+     query = {
+
+        rss_base64=data.http.tails_rss.response_body_base64
+
+     }
+
+     program = [ "bash", "${path.module}/scripts/get_tails_latest_version.sh" ]
+}
+
+output "tails_version" {
+
+  value = "${data.external.get_tails_latest_version.result.version}"
+
+}
