@@ -49,6 +49,10 @@ resource "libvirt_domain" "mytails" {
       network_name = "default"
     }
 
+    xml {
+      xslt = file("add_spicevmc.xsl")
+    }
+
 }
 
 output "tails_version" {
