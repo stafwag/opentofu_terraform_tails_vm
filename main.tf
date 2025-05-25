@@ -20,6 +20,36 @@ module "download_tails_iso" {
 
 }
 
+provider "libvirt" {
+  uri = "qemu:///system"
+}
+
+resource "libvirt_domain" "mytails" {
+
+    depends_on = [ module.download_tails_iso ]
+
+    name = "mytails"
+    memory = "4096"
+    vcpu = 2
+    #    machine = "q35"
+
+    cpu {
+      mode = "host-passthrough"
+    }
+
+    video {
+      type = "qxl"
+    }
+
+    disk {
+      file = "${module.download_tails_iso.iso_file_fullpath}"
+    }
+
+    network_interface {
+      network_name = "default"
+    }
+
+}
 
 output "tails_version" {
   value = "${module.get_tails_latest_version.tails_version}"
