@@ -39,3 +39,4 @@ terraform.rc
 # Ignore the statefiles
 terraform.tfstate
 terraform.tfstate.backup
+.terraform.lock.hcl
