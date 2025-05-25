@@ -18,8 +18,17 @@ resource "null_resource" "tails_iso" {
 
     }
 
-}
+    provisioner "local-exec" {
 
+      when = create
+      command = <<-EOT
+        #
+        # Setting umask to 022 to ensure that the iso imnage readable for the libvirt/kvm user
+        #
+        umask 022
+        wget https://download.tails.net/tails/stable/tails-amd64-${local.tails_version}/${local.iso_file_name} \
+          -O ${local.iso_file_fullpath}
+      EOT
 
 #
 # Using the abspath and pathexpand functions to support ~ with pathexpand
@@ -37,4 +46,3 @@ output "sig_file_fullpath" {
   value = "${abspath(pathexpand(local.sig_file_fullpath))}"
 
 }
-
