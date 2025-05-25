@@ -28,9 +28,26 @@ resource "null_resource" "tails_iso" {
         umask 022
         wget https://download.tails.net/tails/stable/tails-amd64-${local.tails_version}/${local.iso_file_name} \
           -O ${local.iso_file_fullpath}
+        wget https://download.tails.net/tails/stable/tails-amd64-${local.tails_version}/${local.sig_file_name} \
+          -O ${local.sig_file_fullpath}
+        gpg --verify ${local.sig_file_fullpath}
       EOT
 
     }
+
+    provisioner "local-exec" {
+
+      when = destroy
+      command = <<-EOT
+          if [ -f ${self.triggers.iso_file_fullpath} ]; then
+            rm ${self.triggers.iso_file_fullpath}
+          fi
+          if [ -f ${self.triggers.iso_file_fullpath} ]; then
+            rm ${self.triggers.iso_file_fullpath}
+          fi
+      EOT
+
+   }
 
 }
 
