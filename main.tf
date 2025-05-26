@@ -28,10 +28,9 @@ resource "libvirt_domain" "mytails" {
 
     depends_on = [ module.download_tails_iso ]
 
-    name = "mytails"
-    memory = "4096"
-    vcpu = 2
-    #    machine = "q35"
+    name = "${var.name}"
+    memory = "${var.memory}"
+    vcpu = "${var.cpus}"
 
     cpu {
       mode = "host-passthrough"
@@ -48,6 +47,11 @@ resource "libvirt_domain" "mytails" {
     network_interface {
       network_name = "default"
     }
+
+    #
+    # Add spice channel
+    # based on https://github.com/dmacvicar/terraform-provider-libvirt/blob/main/examples/v0.13/xslt/add_spicevmc.xsl
+    #
 
     xml {
       xslt = file("add_spicevmc.xsl")
