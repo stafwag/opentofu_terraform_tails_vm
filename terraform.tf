@@ -1,7 +1,7 @@
 terraform {
   required_providers {
-      libvirt = {
-        source  = "dmacvicar/libvirt"
-      }
+    libvirt = {
+      source = "dmacvicar/libvirt"
+    }
   }
 }

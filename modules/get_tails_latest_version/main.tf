@@ -28,17 +28,17 @@ data "http" "tails_rss" {
 
 data "external" "get_tails_latest_version" {
 
-     query = {
+  query = {
 
-        rss_base64=data.http.tails_rss.response_body_base64
+    rss_base64 = data.http.tails_rss.response_body_base64
 
-     }
+  }
 
-     program = [ "bash", "${path.module}/scripts/get_tails_latest_version.sh" ]
+  program = ["bash", "${path.module}/scripts/get_tails_latest_version.sh"]
 }
 
 output "tails_version" {
 
-  value = "${data.external.get_tails_latest_version.result.version}"
+  value = data.external.get_tails_latest_version.result.version
 
 }
