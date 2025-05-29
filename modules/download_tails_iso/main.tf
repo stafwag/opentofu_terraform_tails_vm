@@ -43,7 +43,7 @@ resource "null_resource" "tails_iso" {
             rm ${self.triggers.iso_file_fullpath}
           fi
           if [ -f ${self.triggers.iso_file_fullpath} ]; then
-            rm ${self.triggers.iso_file_fullpath}
+            rm ${self.triggers.sig_file_fullpath}
           fi
       EOT
 

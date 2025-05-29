@@ -1,6 +1,5 @@
 variable "tails_version" {
   description = "Tails version"
-  default     = "6.15.1"
   type        = string
 }
 
