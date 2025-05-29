@@ -1,7 +1,7 @@
 # opentofu_terraform_tails_vm
 
-[Opentofu](https://opentofu.org/)/[https://developer.hashicorp.com/terraform](https://developer.hashicorp.com/terraform)
-code to spin up a [tails](https://tails.net/) libvirt/KVM virtual machine on GNU/Linux. 
+[OpenTofu](https://opentofu.org/)/[Terraform](https://developer.hashicorp.com/terraform)
+code to spin up a [Tails](https://tails.net/) libvirt/KVM virtual machine on GNU/Linux. 
 
 There're security considerations when you run tails in a virtual machine see:
 
