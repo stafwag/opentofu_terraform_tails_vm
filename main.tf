@@ -17,10 +17,6 @@ module "download_tails_iso" {
 
 }
 
-provider "libvirt" {
-  uri = "qemu:///system"
-}
-
 resource "libvirt_domain" "mytails" {
 
   depends_on = [module.download_tails_iso]
@@ -54,8 +50,4 @@ resource "libvirt_domain" "mytails" {
     xslt = file("add_spicevmc.xsl")
   }
 
-}
-
-output "tails_version" {
-  value = module.get_tails_latest_version.tails_version
 }
