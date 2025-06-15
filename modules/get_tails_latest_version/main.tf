@@ -1,11 +1,11 @@
-# 
-# There are two ways to get the latest tails version 
-# 
-# 1. Query the tail git repository for the latest tag 
-# 2. Check the release RSS feed 
-# 
-# Using the RSS feed as there may be a delay between the release on 
-# the tails repository and the official release 
+#
+# There are two ways to get the latest tails version
+#
+# 1. Query the tail git repository for the latest tag
+# 2. Check the release RSS feed
+#
+# Using the RSS feed as there may be a delay between the release on
+# the tails repository and the official release
 #
 
 data "http" "tails_rss" {
@@ -35,10 +35,4 @@ data "external" "get_tails_latest_version" {
   }
 
   program = ["bash", "${path.module}/scripts/get_tails_latest_version.sh"]
-}
-
-output "tails_version" {
-
-  value = data.external.get_tails_latest_version.result.version
-
 }
