@@ -1,4 +1,4 @@
-# OpenTofu/Terraform Module to get the latest Tails version
+# get_tails_latest_version
 
 An OpenTofu/Terraform module get the latest Tails [https://tails.net/](https://tails.net/) by parsing the release RSS feed: [https://tails.net/doc/upgrade/release_notes/](https://tails.net/doc/upgrade/release_notes/)
 
