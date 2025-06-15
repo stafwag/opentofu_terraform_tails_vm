@@ -47,7 +47,7 @@ resource "libvirt_domain" "mytails" {
   #
 
   xml {
-    xslt = file("add_spicevmc.xsl")
+    xslt = file("${path.module}/add_spicevmc.xsl")
   }
 
 }
